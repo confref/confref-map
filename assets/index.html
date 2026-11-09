@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-area="map">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map · confref labs</title>
+<meta name="description" content="The events of the confref identifiers on a world map, over time, by academic field, discipline and series.">
+<link rel="icon" href="/kit/1/confref-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/kit/1/confref.css">
+<link rel="stylesheet" href="map.css">
+</head>
+<body class="labs">
+<a class="skip" href="#main">Skip to content</a>
+<!--# include virtual="/kit/1/header.html" -->
+<main id="main" class="map-app" data-id-base="https://id.confref.org" data-labs-base="">
+  <aside class="map-filters" aria-label="Filters">
+    <p class="eyebrow">Map <span class="beta">Beta</span></p>
+    <h1 class="map-title">Events on the map</h1>
+    <p class="muted small" id="map-count">Loading…</p>
+    <label class="f">Academic field
+      <select id="f-major"><option value="0">all</option></select></label>
+    <label class="f">Field
+      <select id="f-field"><option value="-1">all</option></select></label>
+    <label class="f">Discipline
+      <select id="f-disc"><option value="-1">all</option></select></label>
+    <label class="f">Series
+      <input id="f-series" type="search" placeholder="Name or acronym" autocomplete="off" list="series-list">
+      <datalist id="series-list"></datalist></label>
+    <div class="f years">
+      <span>Years</span>
+      <input id="f-from" type="number" inputmode="numeric" aria-label="From year">
+      <span>to</span>
+      <input id="f-to" type="number" inputmode="numeric" aria-label="To year">
+      <button id="play" class="button ghost small" type="button" aria-pressed="false">Play</button>
+    </div>
+    <canvas id="hist" height="70" aria-label="Events per year"></canvas>
+    <p class="muted small">Click a place for its events; drag and scroll to move and zoom. The places come from
+      Wikidata (<a href="https://www.confref.org/datasets/ls-places/">ls-places</a>); events placed only by country
+      and online events are not on the map (<span id="not-drawn">…</span>).</p>
+    <button id="reset" class="button ghost small" type="button">Reset</button>
+  </aside>
+  <div class="map-stage">
+    <canvas id="map" aria-label="Map of the events"></canvas>
+    <div id="tip" class="map-tip" hidden></div>
+    <section id="panel" class="map-panel" hidden aria-live="polite"></section>
+  </div>
+</main>
+<script src="map.js" defer></script>
+</body>
+</html>
